@@ -3,15 +3,16 @@ import DoctorsHeader from '../layouts/DoctorsHeader.js';
 import '../../CSSFiles/DoctorsBody.css'
 import SideProfile from '../layouts/SideProfile'
 import DoctorsDashboard from '../layouts/DoctorsDashboard'
-import { BrowserRouter, Routes, Route } from "react-router-dom"
+import { Routes, Route } from "react-router-dom"
 import Profile from '../layouts/Profile'
 import PatientsList from '../layouts/PatientsList'
 import Inventory from '../layouts/Inventory'
 import PatientsHistory from '../layouts/PatientsHistory'
- const DoctorsPage = ()=> {
+
+const Admin = () => {
   return (
-    <>
-       <DoctorsHeader/>
+    <div>
+      <DoctorsHeader/>
         <div className="doctorsBody">
           <SideProfile/>
           <div className="playgroundSection">
@@ -24,16 +25,13 @@ import PatientsHistory from '../layouts/PatientsHistory'
           </Routes>
           </div>
         </div>
-    </>
+    </div>
   )
 }
-export default DoctorsPage;
 
-{/*
-profile update
-check patients details
-track ambulance
-track inventory~Request Stock
-add new record
-update availability
-*/}
+export default Admin
+
+// Inventory - update and peek
+// Doctors
+// Componders
+//Add a doctor and compounder

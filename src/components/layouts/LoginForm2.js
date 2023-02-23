@@ -48,7 +48,9 @@ const LoginForm2 = () => {
             <form>
                 <h3 className="text-center mb-4"><b>Sign In to PHC</b></h3>
                 <div className="form-outline mb-4">
-                    {err.msg !== null ? <div> {err.msg} </div> : null}
+                    {err.msg !== null ? <div class="alert alert-danger" role="alert" style={{padding:"0.5rem"}}>
+                                        {err.msg}
+                                        </div> : null}
                     <select class="form-select" aria-label="Select Your Role" onChange={onChange} name='role'>
                         <option value="" disabled selected hidden>Select Your Role</option>
                         <option value="1">Doctor</option>
