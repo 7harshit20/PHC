@@ -1,8 +1,10 @@
-const bcrypt = require('bcryptjs');
 const express = require('express');
 const router = express.Router();
 const Joi = require('joi');
+const bcrypt = require('bcryptjs')
+const jwt = require('jsonwebtoken')
 const { Doctor } = require('../model/Doctor');
+const { Patient } = require('../model/Patient')
 
 // router.get('/', auth, async (req, res) => {
 //     try {
@@ -16,11 +18,11 @@ const { Doctor } = require('../model/Doctor');
 
 router.post('/', async (req, res) => {
     const { email, password } = req.body;
-    const actors = [Doctor]
+    const actors = [Doctor, null, null, Patient]
     console.log(req.body.role);
-    const curr = actors[req.body.role - 1];
-    console.log(curr);
-    if (curr != Doctor) return res.status(500).send('No func of adding patient');
+    const Curr = actors[req.body.role - 1];
+    console.log(Curr);
+    if (Curr != Doctor && Curr != Patient) return res.status(500).send('No func of adding patient');
     const { error } = Joi.object({
         role: Joi.number(),
         email: Joi.string().email().required(),
@@ -29,8 +31,8 @@ router.post('/', async (req, res) => {
     if (error) return res.status(400).send(error.details[0].message);
 
     try {
-        const doctor = await Doctor.findOne({ email })
-        if (!doctor || !await bcrypt.compare(password, doctor.password)) return res.status(400).send('Invalid user name or password');
+        const user = await Curr.findOne({ email })
+        if (!user || !await bcrypt.compare(password, user.password)) return res.status(400).send('Invalid user name or password');
 
 
         res.send('Logged in');
