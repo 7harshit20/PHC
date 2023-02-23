@@ -16,8 +16,13 @@ const { Doctor } = require('../model/Doctor');
 
 router.post('/', async (req, res) => {
     const { email, password } = req.body;
-
+    const actors = [Doctor]
+    console.log(req.body.role);
+    const curr = actors[req.body.role - 1];
+    console.log(curr);
+    if (curr != Doctor) return res.status(500).send('No func of adding patient');
     const { error } = Joi.object({
+        role: Joi.number(),
         email: Joi.string().email().required(),
         password: Joi.string().max(30).required()
     }).validate(req.body);
