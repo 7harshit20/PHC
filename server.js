@@ -1,8 +1,12 @@
 const express = require('express');
-const db = require('./db');
-const app = express();
+const cookieParser = require('cookie-parser');
+const db = require('./config/db');
+
 db();
+const app = express();
+
 app.use(express.json())
+app.use(cookieParser());
 app.use('/api/register', require('./route/register'));
 app.use('/api/auth', require('./route/auth'));
 

@@ -1,17 +1,20 @@
 import React, { Fragment, useEffect, useState, useContext } from 'react'
-import { Button, Input, Icon, Message } from 'semantic-ui-react'
+import InstituteLogo from '../../images/InstituteLogo.jpg';
 import { Link, useNavigate } from 'react-router-dom'
-import AuthContext from '../../context/auth/AuthContext'
+import AuthContext from '../../context/auth/AuthContext';
+
 
 const LoginForm = () => {
     const authContext = useContext(AuthContext);
-    const { isAuthenicated, error, login, loadUser } = authContext;
+    const { isAuthenicated, error, login, loadUser, user } = authContext;
+    const actors = [null, 'doctor', null, null, 'patient'];
 
 
     const navigate = useNavigate();
 
     const [show, setShow] = useState(false);
     const [form, setForm] = useState({
+        role: '',
         email: '',
         password: '',
     })
@@ -21,12 +24,15 @@ const LoginForm = () => {
     })
 
     useEffect(() => {
-        if (localStorage.getItem('authenticated')) loadUser();
+        if (isAuthenicated) loadUser();
         // eslint-disable-next-line
     }, [])
 
     useEffect(() => {
-        if (isAuthenicated) navigate('/doctor');
+        if (isAuthenicated) {
+            loadUser();
+            navigate(`/${actors[form.role]}`);
+        }
         setErr({ msg: error });
 
     }, [isAuthenicated, error, navigate])
@@ -41,20 +47,55 @@ const LoginForm = () => {
     }
 
     return (
-        <Fragment>
-
-            <h1 style={{ fontSize: '4vw' }} > <span style={{ color: 'green' }}>Health managament app for IIITDMJ.</span></h1>
-            <br />
-            {err.msg !== null ? <Message error header={err.msg} /> : null}
-
-            <Input error={err.type === 'email'} name='email' type='email' placeholder='Email/Roll number' size='big' fluid focus onChange={onChange} /><br />
-
-            <div class={`ui focus fluid big input ${err.type === 'password' ? 'error' : ''}`}><input name='password' type={!show ? 'password' : 'text'} placeholder="Password" onChange={onChange} /><button onClick={() => setShow(!show)} class={`ui basic icon button ${err.type === 'password' ? 'red' : 'teal'}`}><i aria-hidden="true" class={show ? 'eye slash icon' : 'eye icon'}></i></button></div> <br />
-            <span style={{ fontSize: '15px' }} > <Link to='/'>Forgot Password?</Link> </span> <br /> <br />
-
-            <Button type='submit' onClick={onSubmit} size='huge' style={{ borderRadius: '40px' }} positive fluid> <span style={{ fontSize: '20px' }}> <Icon name='sign-in'></Icon> Sign in </span> </Button>
-
-        </Fragment>
+        <div className="container containerStyle">
+            <img className="rounded mx-auto d-block my-3" src={InstituteLogo} alt="Institute Logo" style={{ width: 120, height: 120 }} />
+            <form>
+                <h3 className="text-center mb-4"><b>Sign In to PHC</b></h3>
+                <div className="form-outline mb-4">
+                    {err.msg !== null ? <div class="alert alert-danger" role="alert" style={{ padding: "0.5rem" }}>
+                        {err.msg}
+                    </div> : null}
+                    <select class="form-select" aria-label="Select Your Role" onChange={onChange} name='role'>
+                        <option value="" disabled selected hidden>Select Your Role</option>
+                        <option value="1">Doctor</option>
+                        <option value="2">Compounder</option>
+                        <option value="3">Admin</option>
+                        <option value="4">Patient</option>
+                    </select>
+                </div>
+                <div className="form-outline mb-4">
+                    <input name='email' type="email" id="form2Example1" className="form-control" placeholder='Email address' onChange={onChange} />
+                </div>
+                <div className="form-outline mb-4">
+                    <div class="input-group">
+                        <input name="password" type={!show ? 'password' : 'text'} class="input form-control" id="password" placeholder="password" required="true" aria-label="password" aria-describedby="basic-addon1" onChange={onChange} />
+                        <div class="input-group-append">
+                            <span class="input-group-text" onClick={() => setShow(!show)}>
+                                <i class="fas fa-eye" id="show_eye"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div className="row mb-4">
+                    <div className="col mx-auto">
+                        <div className="form-check">
+                            <input className="form-check-input" type="checkbox" value="" id="form2Example31" checked />
+                            <label className="form-check-label" htmlFor="form2Example31"> Remember me </label>
+                        </div>
+                    </div>
+                    <div className="col text-end">
+                        <a href="#!">Forgot password?</a>
+                    </div>
+                </div>
+                <div class="d-grid gap-2">
+                    <button class="btn btn-primary" type="button" onClick={onSubmit}>Sign In</button>
+                </div>
+                <div className="text-center">
+                    <hr />
+                    <p><strong>Not a member?</strong><a href="#!"> Register</a></p>
+                </div>
+            </form>
+        </div>
     )
 }
 

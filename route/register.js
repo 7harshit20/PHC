@@ -2,7 +2,7 @@ const express = require('express');
 const { Patient, validatePatient } = require('../model/Patient')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
-
+const config = require('config');
 
 const router = express.Router();
 
@@ -19,10 +19,11 @@ router.post('/', async (req, res) => {
         let patient = new Patient({ name, email, roll_number, phone, gender, birth, password: hashedPass });
         await patient.save();
         const payload = {
+            role: 4,
             id: patient._id,
             name
         }
-        const token = jwt.sign(payload, 'Replace with config secret key', { expiresIn: 60 * 60 * 24 * 14 });
+        const token = jwt.sign(payload, config.get('jwtSecret'), { expiresIn: 60 * 60 * 24 * 14 });
         res.cookie('token', token);
         res.status(200).send('Registered');
     } catch (err) {

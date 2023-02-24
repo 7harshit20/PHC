@@ -5,22 +5,27 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const { Doctor } = require('../model/Doctor');
 const { Patient } = require('../model/Patient')
+const config = require('config');
+const middleware = require('../middleware/auth')
 
-// router.get('/', auth, async (req, res) => {
-//     try {
-//         const user = await User.findById(req.user.id).select('-password');
-//         return res.send(user);
-//     } catch (error) {
-//         console.log(error.message);
-//         return res.status(500).send('Something went wrong');
-//     }
-// })
+const actors = [null, Doctor, null, null, Patient];
+
+router.get('/', middleware, async (req, res) => {
+    try {
+        console.log('reached here');
+        const Curr = actors[req.user.role];
+        const user = await Curr.findById(req.user.id).select('-password');
+        return res.send(user);
+    } catch (error) {
+        console.log(error.message);
+        return res.status(500).send('Something went wrong');
+    }
+})
 
 router.post('/', async (req, res) => {
     const { email, password } = req.body;
-    const actors = [Doctor, null, null, Patient]
     console.log(req.body.role);
-    const Curr = actors[req.body.role - 1];
+    const Curr = actors[req.body.role];
     console.log(Curr);
     if (Curr != Doctor && Curr != Patient) return res.status(500).send('No func of adding patient');
     const { error } = Joi.object({
@@ -31,9 +36,17 @@ router.post('/', async (req, res) => {
     if (error) return res.status(400).send(error.details[0].message);
 
     try {
-        const user = await Curr.findOne({ email })
-        if (!user || !await bcrypt.compare(password, user.password)) return res.status(400).send('Invalid user name or password');
+        const curr = await Curr.findOne({ email })
+        if (!curr || !await bcrypt.compare(password, curr.password)) return res.status(400).send('Invalid user name or password');
+        const payload = {
+            role: req.body.role,
+            id: curr.id,
+            name: curr.name
+        };
 
+        const token = jwt.sign(payload, config.get('jwtSecret'), { expiresIn: 60 * 60 * 24 * 14 });
+        console.log('the token is', token);
+        res.cookie('token', token)
 
         res.send('Logged in');
     } catch (err) {
@@ -42,9 +55,9 @@ router.post('/', async (req, res) => {
     }
 });
 
-// router.delete('/', auth, async (req, res) => {
-//     res.clearCookie('token');
-//     res.send('Logout');
-// })
+router.delete('/', middleware, async (req, res) => {
+    res.clearCookie('token');
+    res.send('Logout');
+})
 
 module.exports = router
