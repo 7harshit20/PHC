@@ -14,14 +14,9 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           <Route exact path='/' element={<Home />} />
-<<<<<<< HEAD
           <Route exact path='/doctor/*' element={<Doctor />} />
           <Route exact path='/admin/*' element={<Admin />} />
-=======
-          <Route exact path='/doctor*' element={<Doctor />} />
-          <Route exact path='/admin*' element={<Admin />} />
-          <Route exact path='/patient*' element={<Patient/>} />
->>>>>>> dev
+          <Route exact path='/patient/*' element={<Patient />} />
           <Route exact path='/about' element={<About />} />
         </Routes>
       </BrowserRouter>

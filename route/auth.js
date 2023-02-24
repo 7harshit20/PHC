@@ -3,8 +3,6 @@ const router = express.Router();
 const Joi = require('joi');
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
-const bcrypt = require('bcryptjs')
-const jwt = require('jsonwebtoken')
 const { Doctor } = require('../model/Doctor');
 const { Patient } = require('../model/Patient')
 const config = require('config');
@@ -28,9 +26,6 @@ router.post('/', async (req, res) => {
     const { email, password } = req.body;
     console.log(req.body.role);
     const Curr = actors[req.body.role];
-    console.log(Curr);
-    if (Curr != Doctor && Curr != Patient) return res.status(500).send('No func of adding patient');
-    const Curr = actors[req.body.role - 1];
     console.log(Curr);
     if (Curr != Doctor && Curr != Patient) return res.status(500).send('No func of adding patient');
     const { error } = Joi.object({
