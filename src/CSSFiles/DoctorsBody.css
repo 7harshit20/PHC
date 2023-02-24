@@ -1,7 +1,11 @@
 .doctorsBody{
+    /* position: relative; */
+    margin-top: 60px;
+    float: right;
     display:flex;
+    width:77%
 }
 .playgroundSection{
     width:100%;
-    padding:0.5%
+    padding:2%
 }

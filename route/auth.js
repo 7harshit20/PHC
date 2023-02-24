@@ -3,6 +3,8 @@ const router = express.Router();
 const Joi = require('joi');
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
+const bcrypt = require('bcryptjs')
+const jwt = require('jsonwebtoken')
 const { Doctor } = require('../model/Doctor');
 const { Patient } = require('../model/Patient')
 const config = require('config');
@@ -28,6 +30,9 @@ router.post('/', async (req, res) => {
     const Curr = actors[req.body.role];
     console.log(Curr);
     if (Curr != Doctor && Curr != Patient) return res.status(500).send('No func of adding patient');
+    const Curr = actors[req.body.role - 1];
+    console.log(Curr);
+    if (Curr != Doctor && Curr != Patient) return res.status(500).send('No func of adding patient');
     const { error } = Joi.object({
         role: Joi.number(),
         email: Joi.string().email().required(),
@@ -48,6 +53,8 @@ router.post('/', async (req, res) => {
         console.log('the token is', token);
         res.cookie('token', token)
 
+        const user = await Curr.findOne({ email })
+        if (!user || !await bcrypt.compare(password, user.password)) return res.status(400).send('Invalid Details');
         res.send('Logged in');
     } catch (err) {
         console.log(err.message);

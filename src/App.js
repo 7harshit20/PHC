@@ -6,6 +6,7 @@ import SignUp from './components/pages/SignUp'
 import AuthState from './context/auth/AuthState'
 import Doctor from './components/pages/Doctor'
 import Admin from './components/pages/Admin'
+import Patient from './components/pages/Patient'
 
 const App = () => {
   return (
@@ -13,8 +14,14 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           <Route exact path='/' element={<Home />} />
+<<<<<<< HEAD
           <Route exact path='/doctor/*' element={<Doctor />} />
           <Route exact path='/admin/*' element={<Admin />} />
+=======
+          <Route exact path='/doctor*' element={<Doctor />} />
+          <Route exact path='/admin*' element={<Admin />} />
+          <Route exact path='/patient*' element={<Patient/>} />
+>>>>>>> dev
           <Route exact path='/about' element={<About />} />
         </Routes>
       </BrowserRouter>
