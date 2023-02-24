@@ -36,6 +36,55 @@ const Inventory = () => {
             <td>@twitter</td>
             <td class="text-center"><button class="btn btn-sm btn-danger" type="button">Request</button></td>
           </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>Larry the Bird</td>
+            <td>Larry the Bird</td> 
+            <td>@twitter</td>
+            <td class="text-center"><button class="btn btn-sm btn-danger" type="button">Request</button></td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>Larry the Bird</td>
+            <td>Larry the Bird</td> 
+            <td>@twitter</td>
+            <td class="text-center"><button class="btn btn-sm btn-danger" type="button">Request</button></td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>Larry the Bird</td>
+            <td>Larry the Bird</td> 
+            <td>@twitter</td>
+            <td class="text-center"><button class="btn btn-sm btn-danger" type="button">Request</button></td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>Larry the Bird</td>
+            <td>Larry the Bird</td> 
+            <td>@twitter</td>
+            <td class="text-center"><button class="btn btn-sm btn-danger" type="button">Request</button></td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>Larry the Bird</td>
+            <td>Larry the Bird</td> 
+            <td>@twitter</td>
+            <td class="text-center"><button class="btn btn-sm btn-danger" type="button">Request</button></td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>Larry the Bird</td>
+            <td>Larry the Bird</td> 
+            <td>@twitter</td>
+            <td class="text-center"><button class="btn btn-sm btn-danger" type="button">Request</button></td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>Larry the Bird</td>
+            <td>Larry the Bird</td> 
+            <td>@twitter</td>
+            <td class="text-center"><button class="btn btn-sm btn-danger" type="button">Request</button></td>
+          </tr>
         </tbody>
       </table>
     </div>

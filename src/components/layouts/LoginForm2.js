@@ -46,8 +46,8 @@ const LoginForm2 = () => {
         <div className="container containerStyle">
             <img className="rounded mx-auto d-block my-3" src={InstituteLogo} alt="Institute Logo" style={{ width: 120, height: 120 }} />
             <form>
-                <h3 className="text-center mb-4"><b>Sign In to PHC</b></h3>
-                <div className="form-outline mb-4">
+                <h3 className="text-center mb-4 mt-4"><b>Sign In to PHC</b></h3>
+                <div className="form-outline mb-4 mt-5">
                     {err.msg !== null ? <div class="alert alert-danger" role="alert" style={{padding:"0.5rem"}}>
                                         {err.msg}
                                         </div> : null}
@@ -72,24 +72,18 @@ const LoginForm2 = () => {
                         </div>
                     </div>
                 </div>
-                <div className="row mb-4">
+                {/* <div className="row mb-4">
                     <div className="col mx-auto">
                         <div className="form-check">
                             <input className="form-check-input" type="checkbox" value="" id="form2Example31" checked />
                             <label className="form-check-label" htmlFor="form2Example31"> Remember me </label>
                         </div>
                     </div>
-                    <div className="col text-end">
-                        <a href="#!">Forgot password?</a>
-                    </div>
-                </div>
+                </div> */}
                 <div class="d-grid gap-2">
                     <button class="btn btn-primary" type="button" onClick={onSubmit}>Sign In</button>
                 </div>
-                <div className="text-center">
-                    <hr />
-                    <p><strong>Not a member?</strong><a href="#!"> Register</a></p>
-                </div>
+                <hr/>
             </form>
         </div>
     )

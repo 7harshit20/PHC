@@ -1,21 +1,15 @@
-import React from 'react';
+import React from 'react'
 
-const RegisterForm = () => {
-    return (
-        <>
-            <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                Patient Registeration
-            </button>
-            <div className="modal fade modal-lg" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div className="modal-dialog">
-                    <div className="modal-content">
-                        <div className="modal-header">
-                            <h5 className="modal-title" id="exampleModalLabel">Register</h5>
-                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div className="modal-body">
-                        <form>
-                        <div class="mb-3">
+const PatientsProfile = () => {
+  return (
+    <div class="container-xl px-4">
+    <div class="row">
+        <div class="col-xl-8" style={{margin:"auto"}}> 
+            <div class="card mb-4" >
+                <div class="card-header">Account Details</div>
+                <div class="card-body">
+                    <form>
+                    <div class="mb-3">
                             <label class="small mb-1" for="inputemail">Email address</label>
                             <input class="form-control" id="inputemail" type="email" placeholder="Your e-mail"/>
                         </div>
@@ -48,29 +42,35 @@ const RegisterForm = () => {
                                 <input class="form-control" id="inputPhone" type="integer" placeholder="Enter your phone number"/>
                             </div>
                         </div>
-                        <div class="row gx-3 mt-3 mb-3">
-                        <label class="small mb-1" for="inputAddress">Set Password</label>
-                            <div class="col-md-6">
-                                <input type="password" class="form-control" id="inputPassword" aria-label="Password"  placeholder='Password'/>                                   
+                        <div class="row gx-3 mb-3 my-3">
+                        <label class="small mb-1" for="inputAddress">Update Profile Picture</label>
+                            <div class="input-group">
+                            <input type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload"/>
+                            <button class="btn btn-outline-primary" type="button" id="inputGroupFileAddon04">Upload</button>
+                        </div>
+                        </div>
+                        <hr/>
+                        <div class="row gx-3 mb-3">
+                        <label class="small mb-1" for="inputAddress">Update Password</label>
+                            <div class="col-md-4">
+                                <input type="password" class="form-control" id="inputCurrentPassword" aria-label="Current Password" placeholder='Current Password'/>
                             </div>
-                            <div class="col-md-6">
-                                <input type="password" class="form-control" id="inputConfirmPassword" aria-label="Password"  placeholder='Confirm Password'/>    
+                            <div class="col-md-4">
+                                <input type="password" class="form-control" id="inputNewPassword" aria-label="New Password"  placeholder='New Password'/>                                   
+                            </div>
+                            <div class="col-md-4">
+                                <input type="password" class="form-control" id="inputConfirmNewPassword" aria-label="Confirm New Password"  placeholder='Confirm New Password'/>    
                             </div>
                         </div>
+                        
+                        <button class="btn btn-primary" type="button">Save changes</button>
                     </form>
-                        </div>
-                        <div className="modal-footer">
-                            <button type="button" className="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                            <button type="button" className="btn btn-success">Submit</button>
-                        </div>
-                    </div>
                 </div>
             </div>
-        </>
-    )
+        </div>
+    </div>
+    </div>
+  )
 }
 
-export default RegisterForm
-
-
-// Name email gender birthdate password roll no phone no 
+export default PatientsProfile
