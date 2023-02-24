@@ -25,6 +25,14 @@ const patientSchema = mongoose.Schema({
         type: String,
         required: true,
     },
+    birth: {
+        type: Date,
+        required: true,
+    },
+    password: {
+        type: String,
+        required: true
+    },
     date: {
         type: Date,
         default: Date.now
@@ -37,7 +45,9 @@ const validatePatient = patient => {
         email: Joi.string().email().required(),
         roll_number: Joi.string().min(5).max(10).required(),
         phone: Joi.string().min(10).max(10).required(),
-        gender: Joi.string().required()
+        gender: Joi.string().required(),
+        birth: Joi.date().required(),
+        password: Joi.string().min(6).max(30).required()
     });
     return schema.validate(patient);
 }

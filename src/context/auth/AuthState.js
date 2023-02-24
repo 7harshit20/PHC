@@ -23,10 +23,12 @@ const AuthState = props => {
         try {
             await axios.post('/api/register', formData, config);
             dispatch({ type: types.REGISTER_SUCCESS });
+            console.log(formData);
             console.log('registerd');
 
         } catch (error) {
             dispatch({ type: types.REGISTER_FAILURE, payload: error.response.data })
+            console.log(error.response.data);
             setTimeout(clearError, 2000);
         }
     }
