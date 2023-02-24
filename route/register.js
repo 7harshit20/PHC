@@ -7,8 +7,10 @@ const jwt = require('jsonwebtoken')
 const router = express.Router();
 
 router.post('/', async (req, res) => {
-    const { email, name, roll_number, phone, gender, birth, password } = req.body;
-    const { error } = validatePatient(req.body);
+    const { email, name, roll_number, phone, gender, birth, password, cnf_password } = req.body;
+    if (cnf_password != password) return res.status(400).send('Passwords do no match');
+    const form = { email, name, roll_number, phone, gender, birth, password };
+    const { error } = validatePatient(form);
     if (error) return res.status(400).send(error.details[0].message);
 
     try {

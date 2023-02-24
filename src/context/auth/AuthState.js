@@ -28,6 +28,7 @@ const AuthState = props => {
 
         } catch (error) {
             dispatch({ type: types.REGISTER_FAILURE, payload: error.response.data })
+            console.log(error.response.data);
             setTimeout(clearError, 2000);
         }
     }

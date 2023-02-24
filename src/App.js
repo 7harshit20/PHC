@@ -14,9 +14,8 @@ const App = () => {
         <Routes>
           <Route exact path='/' element={<Home />} />
           <Route exact path='/doctor*' element={<Doctor />} />
-          <Route exact path='/admin*' element={<Admin/>} />
+          <Route exact path='/admin*' element={<Admin />} />
           <Route exact path='/about' element={<About />} />
-          <Route exact path='/signup' element={<SignUp />} />
         </Routes>
       </BrowserRouter>
     </AuthState>
