@@ -12,8 +12,8 @@ import PatientsHistory from '../layouts/PatientsHistory'
   return (
     <>
        <DoctorsHeader/>
+        <SideProfile/>
         <div className="doctorsBody">
-          <SideProfile/>
           <div className="playgroundSection">
           <Routes> 
           <Route path="/" element={ <DoctorsDashboard/> } />
