@@ -4,7 +4,7 @@ import '../../CSSFiles/DoctorsBody.css'
 import { Routes, Route, useNavigate } from "react-router-dom"
 import PatientsHistory from '../layouts/PatientsHistory'
 import PatientsProfile from '../layouts/PatientsProfile'
-import DoctorsSchedule from '../layouts/DoctorsSchedule'
+import CheckDoctorsSchedule from '../layouts/CheckDoctorsSchedule'
 import PatientsSP from '../layouts/PatientsSP.js';
 import AuthContext from '../../context/auth/AuthContext.js';
 
@@ -20,17 +20,15 @@ const PatientPage = () => {
   }, [isAuthenicated, navigate])
   return (
     <>
-      <PatientsHeader />
-      <PatientsSP />
-      <div className="doctorsBody">
-        <div className="playgroundSection">
-          <Routes>
-            <Route path="/" element={<PatientsHistory />} />
-            <Route path="/doctorsSchedule" element={<DoctorsSchedule />} />
-            <Route path="/profile" element={<PatientsProfile />} />
-          </Routes>
+       <PatientsHeader/>
+          <PatientsSP/>
+          <div className="actorsBody">
+            <Routes> 
+            <Route path="/" element={ <PatientsHistory/> } />
+            <Route path="/doctorsSchedule" element={ <CheckDoctorsSchedule/> } />
+            <Route path="/profile" element={ <PatientsProfile/> } />
+            </Routes>
         </div>
-      </div>
     </>
   )
 }
