@@ -1,24 +1,22 @@
 import React from 'react'
 import PatientsHeader from '../layouts/PatientsHeader.js';
-import '../../CSSFiles/DoctorsBody.css'
+import '../../CSSFiles/ActorsBody.css'
 import { Routes, Route } from "react-router-dom"
 import PatientsHistory from '../layouts/PatientsHistory'
 import PatientsProfile from '../layouts/PatientsProfile'
-import DoctorsSchedule from '../layouts/DoctorsSchedule'
+import CheckDoctorsSchedule from '../layouts/CheckDoctorsSchedule'
 import PatientsSP from '../layouts/PatientsSP.js';
  const DoctorsPage = ()=> {
   return (
     <>
        <PatientsHeader/>
-            <PatientsSP/>
-          <div className="doctorsBody">
-            <div className="playgroundSection">
+          <PatientsSP/>
+          <div className="actorsBody">
             <Routes> 
             <Route path="/" element={ <PatientsHistory/> } />
-            <Route path="/doctorsSchedule" element={ <DoctorsSchedule/> } />
+            <Route path="/doctorsSchedule" element={ <CheckDoctorsSchedule/> } />
             <Route path="/profile" element={ <PatientsProfile/> } />
             </Routes>
-            </div>
         </div>
     </>
   )
