@@ -13,27 +13,29 @@ import AuthContext from '../../context/auth/AuthContext.js';
 
 const DoctorsPage = () => {
   const authContext = useContext(AuthContext);
-  const { isAuthenicated } = authContext;
+  const { isAuthenicated, loadUser, user } = authContext;
   const navigate = useNavigate();
   useEffect(() => {
-    if (!isAuthenicated) {
+    if (!localStorage.getItem('authenticated')) {
       navigate('/');
     }
+    else loadUser();
+    console.log(user, 'user');
   }, [isAuthenicated, navigate])
   return (
     <>
-       <DoctorsHeader/>
-        <SideProfile/>
-        <div className="actorsBody">
-          <Routes> 
-          <Route path="/" element={ <DoctorsDashboard/> } />
-          <Route path="/schedule" element={ <DoctorsSchedule/> } />
-          <Route path="/profile" element={ <Profile/> } />
-          <Route path="/patientsList" element={ <PatientsList/> } />
-          <Route path="/inventory" element={ <Inventory/> } />
-          <Route path="/patientsHistory" element={ <PatientsHistory/> } />
-          </Routes>
-        </div>
+      <DoctorsHeader />
+      <SideProfile />
+      <div className="actorsBody">
+        <Routes>
+          <Route path="/" element={<DoctorsDashboard />} />
+          <Route path="/schedule" element={<DoctorsSchedule />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/patientsList" element={<PatientsList />} />
+          <Route path="/inventory" element={<Inventory />} />
+          <Route path="/patientsHistory" element={<PatientsHistory />} />
+        </Routes>
+      </div>
     </>
   )
 }

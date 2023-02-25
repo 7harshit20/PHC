@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect, useContext } from "react";
+import AuthContext from "../../context/auth/AuthContext";
 import DoctorsDP from "../../images/DoctorsDP.png";
 const CheckDoctorsSchedule = () => {
   return (
     <>
-    <h2 class="text-center">Doctors Schedule</h2>
-      <table class="table my-3 text-center" style={{width:"80%",margin:"auto"}}>
+      <h2 class="text-center">Doctors Schedule</h2>
+      <table class="table my-3 text-center" style={{ width: "80%", margin: "auto" }}>
         <thead class="table-dark">
           <tr>
             <th scope="col">S.No</th>
