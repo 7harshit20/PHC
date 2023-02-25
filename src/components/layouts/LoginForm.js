@@ -7,8 +7,7 @@ import AuthContext from '../../context/auth/AuthContext';
 const LoginForm = () => {
     const authContext = useContext(AuthContext);
     const { isAuthenicated, error, login, loadUser, user } = authContext;
-    const actors = [null, 'doctor', null, null, 'patient'];
-
+    const actors = [null, 'doctor', 'compounder', 'admin', 'patient'];
 
     const navigate = useNavigate();
 
