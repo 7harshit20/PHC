@@ -5,7 +5,7 @@ import AuthContext from '../../context/auth/AuthContext';
 
 const RegisterForm = () => {
     const authContext = useContext(AuthContext);
-    const { isAuthenicated, error, register, loading } = authContext
+    const { isAuthenicated, error, register, loading, loadUser } = authContext
     const navigate = useNavigate();
     const [form, setForm] = useState({
         name: '',
@@ -33,11 +33,14 @@ const RegisterForm = () => {
         register(form);
     }
 
-    useEffect(() => {
-        if (isAuthenicated) navigate('/');
-        setErr({ msg: error });
-        setFormLoad(loading);
-    }, [isAuthenicated, error, loading, navigate])
+    // useEffect(() => {
+    //     if (isAuthenicated) {
+    //         loadUser();
+    //         navigate(`/${actors[localStorage.getItem('role')]}`);
+    //     }
+    //     setErr({ msg: error });
+    //     setFormLoad(loading);
+    // }, [isAuthenicated, error, loading, navigate])
 
     return (
         <Fragment>

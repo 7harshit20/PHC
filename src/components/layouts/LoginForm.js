@@ -24,18 +24,18 @@ const LoginForm = () => {
     })
 
     useEffect(() => {
-        if (isAuthenicated) loadUser();
+        if (localStorage.getItem('authenticated')) loadUser();
         // eslint-disable-next-line
     }, [])
 
     useEffect(() => {
         if (isAuthenicated) {
             loadUser();
-            navigate(`/${actors[form.role]}`);
+            navigate(`/${actors[localStorage.getItem('role')]}`);
         }
         setErr({ msg: error });
 
-    }, [isAuthenicated, error, navigate])
+    }, [isAuthenicated, error])
 
     const onChange = e => {
         setForm({ ...form, [e.target.name]: e.target.value })

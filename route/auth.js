@@ -4,11 +4,13 @@ const Joi = require('joi');
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const { Doctor } = require('../model/Doctor');
-const { Patient } = require('../model/Patient')
+const { Patient } = require('../model/Patient');
+const { Compounder } = require('../model/Compounder');
+const { Admin } = require('../model/Admin');
 const config = require('config');
 const middleware = require('../middleware/auth')
 
-const actors = [null, Doctor, null, null, Patient];
+const actors = [null, Doctor, Compounder, Admin, Patient];
 
 router.get('/', middleware, async (req, res) => {
     try {
@@ -27,7 +29,7 @@ router.post('/', async (req, res) => {
     console.log(req.body.role);
     const Curr = actors[req.body.role];
     console.log(Curr);
-    if (Curr != Doctor && Curr != Patient) return res.status(500).send('No func of adding patient');
+    if (Curr === null) return res.status(500).send('No such role');
     const { error } = Joi.object({
         role: Joi.number(),
         email: Joi.string().email().required(),
@@ -58,6 +60,7 @@ router.post('/', async (req, res) => {
 });
 
 router.delete('/', middleware, async (req, res) => {
+    console.log('deleting cookie..');
     res.clearCookie('token');
     res.send('Logout');
 })

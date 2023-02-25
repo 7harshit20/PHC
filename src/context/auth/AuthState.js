@@ -22,7 +22,7 @@ const AuthState = props => {
         }
         try {
             await axios.post('/api/register', formData, config);
-            dispatch({ type: types.REGISTER_SUCCESS });
+            dispatch({ type: types.REGISTER_SUCCESS, payload: 4 });
             console.log(formData);
             console.log('registerd');
 
@@ -57,7 +57,7 @@ const AuthState = props => {
         console.log(formData);
         try {
             await axios.post('api/auth', formData, config);
-            dispatch({ type: types.LOGIN_SUCCESS });
+            dispatch({ type: types.LOGIN_SUCCESS, payload: formData.role });
             console.log('loggged in');
 
         } catch (error) {
@@ -69,10 +69,11 @@ const AuthState = props => {
 
     const logout = async () => {
         try {
+            console.log('here here');
             await axios.delete('/api/auth');
             dispatch({ type: types.LOGOUT_SUCCESS })
         } catch (error) {
-
+            console.log(error);
         }
     }
 
