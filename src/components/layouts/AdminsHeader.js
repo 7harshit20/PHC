@@ -1,13 +1,11 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { useNavigate } from "react-router-dom"
-import AuthContext from '../../context/auth/AuthContext';
 import InstituteLogo from '../../images/InstituteLogo.jpg';
-
 const DoctorsHeader = () => {
-  const authContext = useContext(AuthContext);
-  const { logout } = authContext;
-  const handleLogout = () => {
-    logout();
+  const navigate=useNavigate();
+  const handleLogout=()=>{
+    localStorage.removeItem('token');
+    navigate('/')
   }
   return (
     <div>
@@ -31,31 +29,26 @@ const DoctorsHeader = () => {
         <div className="collapse navbar-collapse" id="navbarNavDropdown">
           <ul className="navbar-nav">
             <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="/doctor">
-                Dashboard
+              <a className="nav-link active" aria-current="page" href="/admin">
+                Home
+              </a>
+            </li>
+            
+            <li className="nav-item">
+              <a className="nav-link" href="/admin/addActor">
+                Add actor
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/doctor/profile">
+              <a className="nav-link" href="/admin/profile">
                 My Profile
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/doctor/schedule">
-                My schedule
+              <a className="nav-link" href="/admin/inventory">
+                Inventory.
               </a>
             </li>
-            <li className="nav-item">
-              <a className="nav-link" href="/doctor/patientsList">
-                Patients
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="/doctor/inventory">
-                Peek in inventory.
-              </a>
-            </li>
-            
           </ul>
           <ul className="navbar-nav mx-2 ms-auto">
             <li className="nav-item"><button type="button" class="btn btn-primary" onClick={handleLogout}>Sign Out</button></li>
